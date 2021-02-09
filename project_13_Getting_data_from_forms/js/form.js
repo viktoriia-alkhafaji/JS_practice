@@ -6,3 +6,10 @@ select.onchange = function () {
 
 let radioButtons = document.querySelectorAll('input[name=radio-1]');
 console.log(radioButtons.length);
+
+let sendForm = document.querySelector('#send-form');
+
+sendForm.onclick = (event)=> {
+    event.preventDefault();
+    console.log('work');
+}
