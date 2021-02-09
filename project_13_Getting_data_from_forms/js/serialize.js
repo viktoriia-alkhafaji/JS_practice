@@ -34,7 +34,7 @@ function serialize (form) {
             break;
         case 'SELECT':
             switch(form.elements[i].type) {
-                
+                //....
             }
 
     }
