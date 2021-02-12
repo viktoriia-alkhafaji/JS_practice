@@ -1,22 +1,32 @@
-function serialize (form) {
-    if(!form || form.nodeName !== "FORM") {
+function serialize(form) {
+    if (!form || form.nodeName !== "FORM") {
         return false;
     }
     let i, j, q = [];
-    for (i = form.elements.length -1; i>= 0; i = i-1){
+    for (i = form.elements.length - 1; i >= 0; i = i - 1) {
+        if (form.elements[i].name === ""){
         continue;
     }
-    switch(form.elements[i].nodeName) {
-        case 'INPUT' :
-            switch(form.elements[i].type) {
+    switch (form.elements[i].nodeName) {
+        case 'INPUT':
+            switch (form.elements[i].type) {
                 case 'text':
                 case 'tel':
                 case 'email':
                 case 'hidden':
+                case 'color':
+                case 'date':
                 case 'password':
                 case 'button':
                 case 'reset':
                 case 'submit':
+                case 'datetime-local':
+                case 'month':
+                case 'number':
+                case 'range':
+                case 'time':
+                case 'url':
+                case 'week':
                     q.push(form.elements[i].name + '=' + encodeURIComponent(form.elements[i].value));
                     break;
                 case 'checkbox':
@@ -27,15 +37,35 @@ function serialize (form) {
                     break;
             }
             break;
-            case 'file':
+        case 'file':
             break;
-        case 'TEXTAREA' :
+        case 'TEXTAREA':
             q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
             break;
         case 'SELECT':
-            switch(form.elements[i].type) {
-                //....
+            switch (form.elements[i].type) {
+                case 'select-one':
+                    q.push(form.elements[i].name + '=' + encodeURIComponent(form.elements[i].value));
+                    break;
+                case 'select-multiple':
+                    for (j = form.elements[i].options.length - 1; j >= 0; j = j - 1) {
+                        if (form.elements[i].options[j].selected) {
+                            q.push(form.elements[i].name + '=' + encodeURIComponent(form.elements[i].options[j].value));
+                        }
+                    }
+                    break;
             }
-
+            break;
+        case 'BUTTON':
+            switch (form.elements[i].type) {
+                case 'reset':
+                case 'submit':
+                case 'button':
+                    q.push(form.elements[i].name + '=' + encodeURIComponent(form.elements[i].value));
+                    break;
+            }
+            break;
+        }
     }
+    return q.join("&");
 }
