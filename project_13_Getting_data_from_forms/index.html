@@ -5,10 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Getting data from a form</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <form >
-        <select name="" id="select-1">
+
+    <div>
+        <input type="radio" name="choice" value="yes"> Yes
+        <input type="radio" name="choice" value="no"> No
+        <input type="button" id="btn" value="Show Selected Value">
+    </div>
+    
+    <form action="" method="" id="form-1">
+        <select name="select-1" id="select-1">
             <option value="choose">Choose the option</option>
             <option value="1">One</option>
             <option value="2">Two</option>
@@ -19,9 +27,26 @@
         <p><input type="radio" value="class-2" name="radio-1">Second class</p>
         <p><input type="radio" value="class-b" name="radio-1">Business class</p>
 
+        <input type="textfield" name="textfield">
+        <input type="submit" id="send-form-1" value="push">
+    </form>
 
-
-        <input type="submit" id="send-form" value="PUSH">
+    <form action="" method="" id="form">
+        <input type="text" name="first-name">
+        <input type="text" name="second-name">
+        <input type="text" name="age">
+        <textarea name="text" id="" cols="30" rows="10"></textarea>
+        <select name="select" id="">
+            <option value="one">1</option>
+            <option value="two">2</option>
+        </select>
+        <input type="month" name="month">
+        <input type="reset" name="" id="">
+        <input type="range" name="range">
+        <input type="url" name="url">
+        <input type="week" name="week">
+        <input type="submit" value="push" id="send-form">
+        <button>ok</button>
     </form>
     <script src="js/serialize.js"></script>
     <script src="js/form.js"></script>
